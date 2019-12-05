@@ -16,5 +16,6 @@
 	<br/><br/>
 	<a href="${root}/board/write.do">글쓰기</a>
 	<a href="${root}/board/list.do">글목록</a>
+	<a href="${root}/board/list.do">말자</a>
 </body>
 </html>
