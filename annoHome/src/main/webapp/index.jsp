@@ -15,6 +15,6 @@
 	<a href="${root}/guest/write.do">방명록 작성</a>
 	<br/><br/>
 	<a href="${root}/board/write.do">글쓰기</a>
-	<a href="${root}/board/list.do">글목록</a>
+	<a href="${root}/board/list.do">글목록목록</a>
 </body>
 </html>
