@@ -59,6 +59,7 @@ public class GuestServiceImp implements GuestService {
 		mav.addObject(request);
 		mav.setViewName("guest/write");
 		System.out.println("guestHomepage");
+		System.out.println("malja");
 	}
 
 	@Override
