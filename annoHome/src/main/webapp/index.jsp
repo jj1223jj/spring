@@ -16,5 +16,6 @@
 	<br/><br/>
 	<a href="${root}/board/write.do">글쓰기</a>
 	<a href="${root}/board/list.do">글목록</a>
+	<h3>전지연이 수정함</h3>
 </body>
 </html>
