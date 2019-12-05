@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+/*
+	quiz01.html
+*/
+
+.wrap {
+	margin: 50px auto;
+	width: 500px;
+}
+
+.input_wrap {
+	float: left;
+	width: 50%;
+	margin-bottom: 20px;
+}
+
+.input_wrap label {
+	line-height: 20px;
+}
+
+textarea {
+	width: 100%;
+}
+
+/* input[type="submit"]{
+} */
+
+.input_button {
+	float: right;
+}

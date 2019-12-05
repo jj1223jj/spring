@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.fileBoardMapper">
+	<!-- resultMap 작성 : 속성과 DB컬럼 매칭 -->
+	<resultMap type="com.java.fileBoard.dto.FileBoardDto" id="fileBoardDto">
+		<result column="board_number" property="boardNumber"/>
+		<result column="writer" property="writer"/>
+		<result column="subject" property="subject"/>
+		<result column="email" property="email"/>
+		<result column="content" property="content"/>
+		<result column="password" property="password"/>
+		<result column="write_date" property="writeDate"/>
+		
+		<result column="read_count" property="readCount"/>
+		<result column="group_number" property="groupNumber"/>
+		<result column="sequence_number" property="sequenceNumber"/>
+		<result column="sequence_level" property="sequenceLevel"/>
+		
+		<result column="file_name" property="fileName"/>
+		<result column="path" property="path"/>
+		<result column="file_size" property="fileSize"/>
+	</resultMap>
+	<!-- insert -->
+	<insert id="fileInsert" parameterType="com.java.fileBoard.dto.FileBoardDto">
+		INSERT INTO board(board_number, writer, subject, email, content, password, write_date, 
+		read_count, group_number, sequence_number, sequence_level) 
+		VALUES(board_board_number_seq.nextval, #{writer},#{subject},#{email},#{content},#{password},#{writeDate},
+		#{readCount},#{groupNumber},#{sequenceNumber},#{sequenceLevel})
+	</insert>
+
+	<!-- file insert -->
+	<insert id="fileInsertDo" parameterType="com.java.fileBoard.dto.FileBoardDto">
+		INSERT INTO board(board_number, writer, subject, email, content, password, 
+		write_date, read_count, group_number, sequence_number, sequence_level, file_name, path, file_size)
+		VALUES(board_board_number_seq.nextval, #{writer},#{subject},#{email},#{content},#{password},#{writeDate},
+		#{readCount},#{groupNumber},#{sequenceNumber},#{sequenceLevel},#{fileName},#{path},#{fileSize})
+	</insert>
+
+	<!-- 그룹번호 지정 -->
+	<select id="fileBoardGroupNumberMax" resultType="int" >
+		SELECT NVL(MAX(group_number), 0) FROM board
+	</select>
+	
+	<!-- 답글 -->
+	<update id="fileBoardWriteNumber" parameterType="java.util.Map">
+		<![CDATA[
+		UPDATE board SET sequence_number = sequence_number+1 
+		WHERE group_number = #{groupNumber} AND sequence_number > #{sequenceNumber}
+		]]>
+	</update>
+
+	<!-- 조회수 -->
+	<select id="fileBoardCount" resultType="int">
+		SELECT COUNT(*) FROM board
+	</select>
+	
+	<!--  : 나갈때는 resultMap으로 boardDto로 나간다-->
+	<select id="fileBoardList" parameterType="java.util.Map" resultMap="fileBoardDto">
+		<![CDATA[
+		SELECT * FROM (SELECT ROWNUM as rnum, A.* from 
+		(SELECT * FROM board ORDER BY group_number DESC, sequence_number asc) A) b 
+		where b.rnum >= #{startRow} AND b.rnum<= #{endRow}
+		]]>
+	</select>
+	
+	<!-- 게시글 조회수 UP -->
+	<update id="fileBoardReadUpdate" parameterType="int">
+		UPDATE board SET read_count = read_count+1 WHERE board_number = #{boardNumber}
+	</update>
+	
+	<!-- 게시글 읽기 -->
+	<select id="fileBoardReadSelect" parameterType="int" resultMap="fileBoardDto">
+		SELECT * FROM board WHERE board_number = #{boardNumber}
+	</select>
+	
+	<!-- 비밀번호 체크 -->
+	<select id="fileBoardPwdCheck" parameterType="java.util.Map" resultType="String">
+		SELECT * FROM board WHERE password = #{pwd} AND board_number = #{boardNumber}
+	</select>
+
+	<!-- 기존내용 불러오기 -->
+	<select id="fileBoardUpSel" parameterType="java.util.Map" resultMap="fileBoardDto">
+		SELECT * FROM board WHERE board_number = #{boardNumber} AND password = #{pwd}
+	</select>
+	
+	<!-- select -->
+	<select id="fileBoardSel" parameterType="int" resultType="com.java.fileBoard.dto.FileBoardDto">
+		SELECT * FROM board WHERE board_number = #{boardNumber}
+	</select>
+	
+	<!-- update -->
+	<update id="fileBoardUpdate" parameterType="com.java.fileBoard.dto.FileBoardDto">
+		UPDATE board SET subject = #{subject}, email = #{email}, content = #{content} WHERE board_number = #{boardNumber}
+	</update>
+	
+	<!-- file update  -->
+	<update id="fileBoardUpdateDo" parameterType="com.java.fileBoard.dto.FileBoardDto">
+		UPDATE board SET subject = #{subject}, email = #{email}, content = #{content}, 
+		file_name=#{fileName}, path=#{path}, file_size=#{fileSize} WHERE board_number = #{boardNumber}
+	</update>
+	
+	<!-- 답글 유무 count -->
+	<select id="fileBoardDelCheck" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM board WHERE group_number = #{groupNumber}
+	</select>
+	
+	<!-- delete -->
+	<delete id="fileBoardDel" parameterType="java.util.Map">
+		DELETE FROM board WHERE board_number= #{boardNumber} AND password= #{pwd}
+	</delete>
+	
+	
+
+
+</mapper>

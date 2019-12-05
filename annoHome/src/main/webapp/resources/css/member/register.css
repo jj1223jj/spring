@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+/* 
+	quiz02_style.css
+*/
+
+
+/*
+	reset
+  */
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	box-sizing: border-box;
+}
+
+/*
+	common
+  */
+
+.hide {
+	color: transparent;
+	font-size: 0;
+	height: 0;
+	display: inline-block;
+}
+
+.btn {
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.btn.btn_small {
+	width: 50px;
+}
+
+input[type="text"], input[type="password"], select {
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.clearfix:after {
+	content:"";
+	clear: both;
+}
+
+
+
+/*
+	layout
+  */
+
+.contents {
+	width: 800px;
+	margin: 30px auto 0;
+}
+
+.contents .title {
+	font-size: 18px;
+	font-weight: 600;
+	text-align: center;
+	background: #eee;
+	line-height: 60px;
+}
+
+.input_list {
+	width: 100%;
+}
+
+.input_list li {
+	height: 52px;
+	line-height: 50px;
+	background: #eee;
+}
+
+.input_list li p {
+	float: left;
+	width: 600px;
+	border: 2px solid #999;
+	padding-left: 10px;
+	border-top: none;
+}
+
+.input_list li:first-child p {
+	border-top: 2px solid #999;
+}
+
+.input_list li p:first-child{
+	width: 200px;
+	border-right: none;
+}
+
+.input_list li p.col01 {
+	width: 100%;
+	border-right: 2px solid #999;
+	text-align: center;
+} 
+
+.input_list li p > span {
+	display: inline-block;
+}
+
+
+.input_list li p > span input + label {
+	margin-right: 8px;
+}

@@ -1,0 +1,123 @@
+@charset "UTF-8";
+/*
+	style.css
+*/
+
+
+/*
+	reset
+*/
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	box-sizing: border-box;
+}
+
+
+.hide {
+	color: transparent;
+	height: 0;
+	font-size: 0;
+	display: inline-block;
+}
+
+
+/*
+	common
+*/
+ .clearfix:after {
+ 	content:"";
+ 	clear:both;
+	display: block;
+ }
+
+ .btn {
+ 	width: 80px;
+ 	height: 30px;
+ 	line-height: 30px;
+ 	margin-left: 10px;
+ }
+ .btn:first-child{
+ 	margin-left: 0;
+ }
+ 
+ input[type="text"], input[type="password"]{
+	height: 28px;
+}
+ /*
+ 	layout
+ */
+ 
+.contents {
+	width: 800px;
+	margin: 50px auto 0;
+}
+.title {
+	height: 100px;
+	margin-bottom: 10px;
+}
+
+.title .title_main {
+	text-align: center;
+	line-height: 50px;
+	font-size: 20px;
+}
+
+.title .list {
+	float: right;
+	font-size: 14px;
+	color: #666;
+}
+.title .list:hover {
+	color: blue;
+}
+
+.write_box li {
+	height: 38px;
+	line-height: 38px;
+	border: 2px solid #000;
+	border-top: none;
+}
+
+.write_box li:first-child {
+	border-top: 2px solid #000;
+}
+
+.write_box li.long {
+	min-height: 300px;
+}
+
+.write_box li p {
+	float: left;
+	height: 36px;
+	line-height: 32px;
+	width: 650px;
+	padding-left: 4px;
+}
+
+.write_box li.long p{
+	height:100%;
+}
+
+.write_box li p:first-child {
+	width: 146px;
+	border-right: 1px solid #000;
+	text-align: center;
+	padding-left: 0;
+}
+
+.write_box li p.col1 {
+	width: 100%;
+	line-height: 36px;
+	text-align: center;
+	border-right: none;
+}
+
+
+
+textarea {
+	margin-top: 4px;
+	width: 642px;
+	height: calc(100% - 8px);
+}
