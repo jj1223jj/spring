@@ -35,11 +35,11 @@ public class GuestServiceImp implements GuestService {
 		int count = guestDao.getCount();
 		HomeAscpect.logger.info(HomeAscpect.logMsg+"count: "+count);
 		
-		int currentPage=Integer.parseInt(pageNumber);		//1) 요청페이지 1
+		int currentPage=Integer.parseInt(pageNumber);		//1) �슂泥��럹�씠吏� 1
 		
-		int boardSize = 3;									// 2) 페이지당 출력할 게시물 수
-		int startRow = ((currentPage-1)*boardSize)+1;		// 시작번호
-		int endRow = ((currentPage)*boardSize);				// 끝번호
+		int boardSize = 3;									// 2) �럹�씠吏��떦 異쒕젰�븷 寃뚯떆臾� �닔
+		int startRow = ((currentPage-1)*boardSize)+1;		// �떆�옉踰덊샇
+		int endRow = ((currentPage)*boardSize);				// �걹踰덊샇
 		
 		int start = count - startRow + 1;
 		int end = count - endRow + 1;
@@ -58,6 +58,7 @@ public class GuestServiceImp implements GuestService {
 		
 		mav.addObject(request);
 		mav.setViewName("guest/write");
+		System.out.println("guestHomepage");
 	}
 
 	@Override
@@ -81,7 +82,7 @@ public class GuestServiceImp implements GuestService {
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
 		int num = Integer.parseInt(request.getParameter("num"));
-		//삭제했을 때 그 페이지가 다시 출력되게 하기 위해(4페이지에서 삭제시 1페이지가 아닌 4페이지로 로딩) - VIEW단으로 넘어감
+		//�궘�젣�뻽�쓣 �븣 洹� �럹�씠吏�媛� �떎�떆 異쒕젰�릺寃� �븯湲� �쐞�빐(4�럹�씠吏��뿉�꽌 �궘�젣�떆 1�럹�씠吏�媛� �븘�땶 4�럹�씠吏�濡� 濡쒕뵫) - VIEW�떒�쑝濡� �꽆�뼱媛�
 		int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		
 		HomeAscpect.logger.info(HomeAscpect.logMsg+ "num" + num + "/" + "pageNumber" + pageNumber);
